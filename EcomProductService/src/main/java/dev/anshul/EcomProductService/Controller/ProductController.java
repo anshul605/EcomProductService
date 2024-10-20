@@ -6,6 +6,7 @@ import dev.anshul.EcomProductService.entity.Product;
 import dev.anshul.EcomProductService.exception.InvalidInputException;
 import dev.anshul.EcomProductService.exception.RandomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,12 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
+    @Qualifier("productService")
     private ProductService productService; // field injection , latter constructor and getter setter
+//if we need multiple services
+//    @Autowired
+//    @Qualifier("fakeStoreProductService")
+//    private ProductService productServiceImple;
 
     @GetMapping("/product")
     public ResponseEntity getAllProducts(){
@@ -35,6 +41,13 @@ public class ProductController {
     @GetMapping("/productexception")
     public ResponseEntity getProductException(){
         throw new RandomException("Exception from Product");
+
+    }
+
+    @PostMapping("/product")
+    public ResponseEntity createProduct(@RequestBody Product product){
+        Product savedProduct = productService.createProduct(product);
+        return ResponseEntity.ok(savedProduct);
 
     }
 
