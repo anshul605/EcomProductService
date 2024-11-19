@@ -16,7 +16,7 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    @Qualifier("productService")
+    @Qualifier("productService")// this is representing inheritance
     private ProductService productService; // field injection , latter constructor and getter setter
 //if we need multiple services
 //    @Autowired

@@ -14,7 +14,8 @@ public class ProductControllerExceptionHandler {
     public ResponseEntity handleProductNotFoundException(ProductPresentException pe){
         ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
                 pe.getMessage(),404);
-
+// how pe.getMessage is taking out the message need to check?????
+///???????
         return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.NOT_FOUND);
     }
     // dont do runtime exception as this is not a good practice anyway it will not handle all exception

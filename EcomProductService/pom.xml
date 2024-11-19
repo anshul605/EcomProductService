@@ -40,7 +40,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
+<!--		 https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -48,10 +48,16 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>com.microsoft.sqlserver</groupId>-->
+<!--			<artifactId>mssql-jdbc</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

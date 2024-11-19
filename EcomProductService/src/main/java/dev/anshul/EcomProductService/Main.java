@@ -19,8 +19,10 @@ public class Main {
 /*
     Date -> never stores a specific date or time or timezone
     Date -> stores number of seconds that have passed since 1 Jan 1970, 00:00 at GMT || epoch time
-    date alwaysdisplay data in your local timezone---in production it will display
-    based on the timezone the server is configured
+    when you run code in local date convert seconds to your local timezone---in production it will display
+    based on the timezone the application server is configured (configured in utc)...
+    where the actual java code is running so when the date object is created and parsed in production
+    it display UTC timezone
     int epoch - 1970 to 2038
     long epoch - 1970 to 20.8M years
 
