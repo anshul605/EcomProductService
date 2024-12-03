@@ -1,4 +1,4 @@
-package dev.anshul.EcomProductService.dto;
+package dev.anshul.EcomProductService.dto.fakeSoreDtos;
 
 import lombok.Getter;
 import lombok.Setter;

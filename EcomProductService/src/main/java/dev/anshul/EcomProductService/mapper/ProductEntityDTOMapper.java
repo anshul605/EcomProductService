@@ -1,5 +1,6 @@
 package dev.anshul.EcomProductService.mapper;
 
+import dev.anshul.EcomProductService.dto.CreateProductRequestDTO;
 import dev.anshul.EcomProductService.dto.ProductResponseDTO;
 import dev.anshul.EcomProductService.entity.Product;
 
@@ -14,6 +15,17 @@ public class ProductEntityDTOMapper {
         responseDTO.setPrice(product.getPrice());
         responseDTO.setImageURL(product.getImageURL());
         responseDTO.setDescription(product.getDescription());
+        responseDTO.setCategory(product.getCategory().getName());
         return responseDTO;
+    }
+
+    public static Product convertCreateProductRequestDTOToProduct (CreateProductRequestDTO productRequestDTO){
+        Product product = new Product();
+        product.setTitle(productRequestDTO.getTitle());
+        product.setPrice(productRequestDTO.getPrice());
+        product.setImageURL(productRequestDTO.getImageURL());
+        product.setDescription(productRequestDTO.getDescription());
+        return product;
+        //here we are getting UUID but in product entity we are storing cateogry object so need to get cateory object
     }
 }

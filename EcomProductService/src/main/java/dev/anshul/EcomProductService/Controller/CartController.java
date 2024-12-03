@@ -1,11 +1,10 @@
 package dev.anshul.EcomProductService.Controller;
-
+//this was only created to know about the use of controller advice
 import dev.anshul.EcomProductService.client.FakeStoreClient;
-import dev.anshul.EcomProductService.dto.FakeStoreCartResponseDTO;
+import dev.anshul.EcomProductService.dto.fakeSoreDtos.FakeStoreCartResponseDTO;
 import dev.anshul.EcomProductService.exception.CartNotFoundException;
 import dev.anshul.EcomProductService.exception.RandomException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

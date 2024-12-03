@@ -1,8 +1,8 @@
 package dev.anshul.EcomProductService.client;
 
 
-import dev.anshul.EcomProductService.dto.FakeStoreCartResponseDTO;
-import dev.anshul.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.anshul.EcomProductService.dto.fakeSoreDtos.FakeStoreCartResponseDTO;
+import dev.anshul.EcomProductService.dto.fakeSoreDtos.FakeStoreProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;

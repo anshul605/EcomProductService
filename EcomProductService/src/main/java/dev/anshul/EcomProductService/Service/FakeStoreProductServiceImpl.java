@@ -1,8 +1,7 @@
 package dev.anshul.EcomProductService.Service;
 
-import ch.qos.logback.core.net.server.Client;
 import dev.anshul.EcomProductService.client.FakeStoreClient;
-import dev.anshul.EcomProductService.dto.FakeStoreProductResponseDTO;
+import dev.anshul.EcomProductService.dto.fakeSoreDtos.FakeStoreProductResponseDTO;
 import dev.anshul.EcomProductService.entity.Product;
 import dev.anshul.EcomProductService.exception.NoProductPresentException;
 import dev.anshul.EcomProductService.exception.ProductNotFoundException;
