@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("fakeStoreProductService")
-public class FakeStoreProductServiceImpl implements ProductService{
-
+public class FakeStoreProductServiceImpl {
+//implements ProductService-- remove this so that we dont have to update it here based on the changes in product service interface
     @Autowired
     private FakeStoreClient fakeStoreClient;
 
-    @Override
+    //@Override
     public List<FakeStoreProductResponseDTO> getAllProducts() {
         List<FakeStoreProductResponseDTO> fakeStoreProducts =  fakeStoreClient.getAllProducts();
         if (fakeStoreProducts == null){
@@ -26,7 +26,7 @@ public class FakeStoreProductServiceImpl implements ProductService{
         return fakeStoreProducts;
     }
 
-    @Override
+    //@Override
     public FakeStoreProductResponseDTO getProduct(int productId) throws ProductNotFoundException {
         FakeStoreProductResponseDTO fakeStoreProductResponseDTO = fakeStoreClient.getProductByID(productId);
         if(fakeStoreProductResponseDTO == null){
@@ -36,17 +36,17 @@ public class FakeStoreProductServiceImpl implements ProductService{
         return fakeStoreProductResponseDTO;
     }
 
-    @Override
+    //@Override
     public Product createProduct(Product product) {
         return null;
     }
 
-    @Override
+    //@Override
     public Product updateProduct(Product updatedProduct, int productID) {
         return null;
     }
 
-    @Override
+    //@Override
     public boolean deleteProduct(int productID) {
         return false;
     }

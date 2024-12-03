@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -23,32 +25,60 @@ public class ProductController {
 //    @Qualifier("fakeStoreProductService")
 //    private ProductService productServiceImple;
 
-    @GetMapping("/product")
+    @GetMapping
     public ResponseEntity getAllProducts(){
-        List<FakeStoreProductResponseDTO> products = productService.getAllProducts();
+        List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/product/{id}")
-    public ResponseEntity getProductByID(@PathVariable("id") int id){
+    @GetMapping("/{id}")
+    public ResponseEntity getProductByID(@PathVariable("id") UUID id){
 
-        if(id<=1){
+        //when id was int if(id<=1)
+        if(id == null){
             throw new InvalidInputException("Input is not correct");
         }
-        FakeStoreProductResponseDTO product = productService.getProduct(id);
+        Product product = productService.getProduct(id);
         return ResponseEntity.ok(product);
     }
-    @GetMapping("/productexception")
+    // used for demo of controller advice
+    /*@GetMapping("/productexception")
     public ResponseEntity getProductException(){
         throw new RandomException("Exception from Product");
 
-    }
+    }*/
 
-    @PostMapping("/product")
+    @PostMapping()
     public ResponseEntity createProduct(@RequestBody Product product){
         Product savedProduct = productService.createProduct(product);
         return ResponseEntity.ok(savedProduct);
 
+    }
+// Rest APi works at object level when update you have to send the whole object not the
+    //parameter you updated, GraphQl solves this problem
+    //whole json coming from FE is an object, so update happens at object level
+    @PutMapping("/{id}")
+    public ResponseEntity updateProduct(@PathVariable("id") UUID id, @RequestBody Product product){
+        Product updatedProduct = productService.updateProduct(product, id);
+        return ResponseEntity.ok(updatedProduct);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProduct(@PathVariable("id") UUID id){
+        return ResponseEntity.ok(productService.deleteProduct(id));
+    }
+
+    @GetMapping("name/{productName}")
+    //when we hit "/{productName}" with this structure then its giving error
+    //API structure is same for 2 apis, UUID or top api
+    // in json UUID is string, so weather its is uuid or product name its string doesnot matter
+    public ResponseEntity getProductByProductName(@PathVariable("productName") String productName){
+        return ResponseEntity.ok(productService.getProduct(productName));
+    }
+
+
+    @GetMapping("/{min}/{max}")
+    public ResponseEntity getProductByPriceRange(@PathVariable("min") double minPrice,@PathVariable("max") double maxPrice){
+        return ResponseEntity.ok(productService.getProducts(minPrice, maxPrice));
     }
 
 }
