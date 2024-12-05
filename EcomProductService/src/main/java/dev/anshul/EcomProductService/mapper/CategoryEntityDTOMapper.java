@@ -13,7 +13,7 @@ public class CategoryEntityDTOMapper {
 //call productentity to product response dto mapper
 
     public static CategoryResponseDTO convertCategoryToCategoryResponseDTO(Category category){
-        //call product entity to product response dto mapper
+        //call product entity to product response dto mapper as we are passing list of productresponsedto in category response
         CategoryResponseDTO categoryResponseDTO = new CategoryResponseDTO();
         categoryResponseDTO.setCategoryName(category.getName());
         List<ProductResponseDTO> productResponseDTOs = new ArrayList<>();
