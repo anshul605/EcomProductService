@@ -7,7 +7,7 @@ import dev.anshul.EcomProductService.entity.Product;
 import dev.anshul.EcomProductService.exception.CategoryNotFoundException;
 import dev.anshul.EcomProductService.exception.ProductNotFoundException;
 import dev.anshul.EcomProductService.mapper.ProductEntityDTOMapper;
-import dev.anshul.EcomProductService.repository.CategoryRepoistory;
+import dev.anshul.EcomProductService.repository.CategoryRepository;
 import dev.anshul.EcomProductService.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService{
     ProductRepository productRepository;
 
     @Autowired
-    CategoryRepoistory categoryRepoistory;
+    CategoryRepository categoryRepository;
 
     @Override
     //Earlier we were returning entity itself for simplicity
@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService{
         // not a good idea--service layer can talk to repo layer--the code become messy --its very subjective
         // its ok for service to talk to some other repo...tts doable
         // returning an entity from service is not doable---design is very subjective
-        Category savedCategory = categoryRepoistory.findById(productRequestDTO.getCategoryId()).orElseThrow(
+        Category savedCategory = categoryRepository.findById(productRequestDTO.getCategoryId()).orElseThrow(
                 () -> new CategoryNotFoundException("Category not found for id:" + productRequestDTO.getCategoryId()));
         product.setCategory(savedCategory);
         //while creation we dont need eager loading and lazy loading

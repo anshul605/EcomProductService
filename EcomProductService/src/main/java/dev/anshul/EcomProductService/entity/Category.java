@@ -8,11 +8,11 @@ import lombok.Setter;
 import javax.xml.transform.sax.SAXResult;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
+@Entity(name = "ECOM_CATEGORY")
 public class Category extends BaseModel {
     private String name;
-    @OneToMany
+    @OneToMany//(fetch = FetchType.LAZY)
     private List<Product> products;
 }

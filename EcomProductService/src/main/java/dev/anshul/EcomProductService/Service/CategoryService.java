@@ -15,8 +15,8 @@ public interface CategoryService {
     // not a good idea--service layer can talk to repo layer
 
     List<CategoryResponseDTO> getAllCategories();
-    CategoryResponseDTO createCategory (CreateCategoryRequestDTO createCategoryRequestDTO);
-    CategoryResponseDTO updateCategory (CreateCategoryRequestDTO createCategoryRequestDTO, UUID categoryId);
+    CategoryResponseDTO createCategory (CreateCategoryRequestDTO categoryRequestDTO);
+    CategoryResponseDTO updateCategory (CreateCategoryRequestDTO categoryRequestDTO, UUID categoryId);
     boolean deleteCategory (UUID categoryId);
 
 }
