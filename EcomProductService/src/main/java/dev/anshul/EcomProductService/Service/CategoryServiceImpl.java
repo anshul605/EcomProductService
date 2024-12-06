@@ -4,6 +4,7 @@ import dev.anshul.EcomProductService.client.FakeStoreClient;
 import dev.anshul.EcomProductService.dto.CategoryResponseDTO;
 import dev.anshul.EcomProductService.dto.CreateCategoryRequestDTO;
 import dev.anshul.EcomProductService.entity.Category;
+import dev.anshul.EcomProductService.entity.Product;
 import dev.anshul.EcomProductService.exception.CategoryNotFoundException;
 import dev.anshul.EcomProductService.mapper.CategoryEntityDTOMapper;
 import dev.anshul.EcomProductService.repository.CategoryRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService{
@@ -52,5 +54,22 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public boolean deleteCategory(UUID categoryId) {
         return false;
+    }
+
+    @Override
+    public double getTotalPriceForCategory(UUID categoryId) {
+        Category category = categoryRepository.findById(categoryId).orElseThrow(
+                () -> new CategoryNotFoundException("Category for the given is not Found"));
+        if(category.getProducts() == null || category.getProducts().isEmpty()){
+            return 0;
+        }
+        else {
+            double sum  = 0;
+            for (Product p: category.getProducts()){
+                sum = sum + p.getPrice();
+
+            }
+            return sum;
+        }
     }
 }
