@@ -34,7 +34,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable("id") UUID categoryId, @RequestBody CreateCategoryRequestDTO createCategoryRequestDTO) throws Exception {
+    public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable("id") UUID categoryId, @RequestBody CreateCategoryRequestDTO createCategoryRequestDTO){
+        //when teaching test cases we add some null checks to show existing test should not fail then somehow missed to remove --throws Exception
         return ResponseEntity.ok(categoryService.updateCategory(createCategoryRequestDTO, categoryId));
     }
 

@@ -3,6 +3,7 @@ package dev.anshul.EcomProductService.Service;
 import dev.anshul.EcomProductService.client.FakeStoreClient;
 import dev.anshul.EcomProductService.dto.CategoryResponseDTO;
 import dev.anshul.EcomProductService.dto.CreateCategoryRequestDTO;
+import dev.anshul.EcomProductService.dto.fakeSoreDtos.FakeStoreProductResponseDTO;
 import dev.anshul.EcomProductService.entity.Category;
 import dev.anshul.EcomProductService.entity.Product;
 import dev.anshul.EcomProductService.exception.CategoryNotFoundException;
@@ -58,6 +59,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public double getTotalPriceForCategory(UUID categoryId) {
+//example to display multiple when and then can be called inside same method, as we have 2 dependencies
+        //List<FakeStoreProductResponseDTO> productResponseDTOS = fakeStoreClient.getAllProducts();
         Category category = categoryRepository.findById(categoryId).orElseThrow(
                 () -> new CategoryNotFoundException("Category for the given is not Found"));
         if(category.getProducts() == null || category.getProducts().isEmpty()){

@@ -15,12 +15,15 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.*;
-//wherever we have the logical code need to write test case--not required for entity  , models etc.
+//wherever we have the logical code need to write test case--not required for entity,dtos, exception calss , models etc.
 //spring uses Jnuite for unit test internally
 public class CategoryServiceImplTest {
     //mock all the dependencies of the class we are testing
     @Mock
     private CategoryRepository categoryRepository;
+
+    //    @Mock
+//    private FakeStoreClient fakeStoreClient;
 
     // in which class i want to inject these mocks
     @InjectMocks
@@ -48,13 +51,16 @@ public class CategoryServiceImplTest {
         UUID categoryId = UUID.randomUUID();
         Optional<Category> categoryOptionalMockData = getCategoryMockData();
         Mockito.when(categoryRepository.findById(categoryId)).thenReturn(categoryOptionalMockData);
+        //example to display multiple when and then can be called inside same method
+        //ArrayList<FakeStoreProductResponseDTO> fakeStoreProductResponseDTOS = new ArrayList<>();
+        //Mockito.when(fakeStoreClient.getAllProducts()).thenReturn(fakeStoreProductResponseDTOS);
         //mockito is the object that run around with your tests
         //now calling the auctual method of the class
         double expectedTotalCost = 300.00;
 
         //Act
         double actualTotalCost = categoryService.getTotalPriceForCategory(categoryId);
-        //Assert (all checks)
+        //Assert (all checks)(its also used for comparing list of objects but it compare index as well)
         Assertions.assertEquals(expectedTotalCost, actualTotalCost);
     }
 
